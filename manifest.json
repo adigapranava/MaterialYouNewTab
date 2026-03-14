@@ -3,14 +3,31 @@
 	"name": "MYNT: Material You New Tab",
 	"version": "3.3.6",
 	"description": "A Simple New Tab (browser's home page) inspired by Google's 'Material You' design.",
-	"permissions": ["search"],
-	"optional_permissions": ["bookmarks", "favicon"],
+	"permissions": [
+		"search",
+		"identity",
+		"identity.email"
+	],
+	"optional_permissions": [
+		"bookmarks",
+		"favicon"
+	],
 	"optional_host_permissions": [
 		"https://www.google.com/complete/search?client=*",
 		"https://duckduckgo.com/ac/?q=*",
 		"https://search.brave.com/api/suggest?q=*",
 		"https://*.wikipedia.org/w/api.php?action=opensearch&search=*"
 	],
+	"host_permissions": [
+		"https://www.googleapis.com/*"
+	],
+	"oauth2": {
+		"client_id": "YOUR_GOOGLE_CLIENT_ID_HERE.apps.googleusercontent.com",
+		"scopes": [
+			"https://www.googleapis.com/auth/calendar.readonly",
+			"https://www.googleapis.com/auth/calendar.events.readonly"
+		]
+	},
 	"icons": {
 		"16": "favicon/icon16.png",
 		"48": "favicon/icon48.png",

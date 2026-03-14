@@ -284,7 +284,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const quotesToggle = document.getElementById("quotesToggle");
     const motivationalQuotesCont = document.getElementById("motivationalQuotesCont");
     const motivationalQuotesCheckbox = document.getElementById("motivationalQuotesCheckbox");
-    const searchWithContainer = document.getElementById("search-with-container");
 
     // Load states from localStorage
     hideSearchWith.checked = localStorage.getItem("showShortcutSwitch") === "true";
@@ -311,7 +310,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
         // Update UI visibility
         quotesToggle.classList.remove("inactive");
-        searchWithContainer.style.display = isMotivationalQuotesEnabled ? "none" : "flex";
         motivationalQuotesCont.style.display = isMotivationalQuotesEnabled ? "flex" : "none";
 
         // Load quotes if motivational quotes are enabled
@@ -327,7 +325,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Event Listeners
     hideSearchWith.addEventListener("change", () => {
-        searchWithContainer.style.display = "flex";
         updateMotivationalQuotesState();
     });
 

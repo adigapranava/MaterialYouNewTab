@@ -34,6 +34,8 @@ const en = {
     // To-do List
     "todoListText": "To Do List",
     "todoListInfo": "Show a daily To Do list",
+    "googleCalendarText": "Google Calendar",
+    "googleCalendarInfo": "Show upcoming calendar events",
     "todoListHover": "ToDo List",    // Keep this short
     "todoPlaceholder": "Add task...",
 

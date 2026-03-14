@@ -19,6 +19,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
 
     <!-- SCRIPTS -->
+    <script src="scripts/api-keys.js"></script>
     <script src="scripts/preload.js"></script>
     <script defer src="scripts/languages.js"></script>
     <script defer src="scripts/save-load-states.js"></script>
@@ -42,6 +43,7 @@
     <script defer src="scripts/google-apps.js"></script>
     <script defer src="scripts/voice-search.js"></script>
     <script defer src="scripts/backup-restore.js"></script>
+    <script defer src="scripts/calendar.js"></script>
 
     <!-- LANGUAGES SCRIPTS -->
     <script src="locales/pt.js"></script>
@@ -106,6 +108,8 @@
         <ul class="todolist" id="todoullist">
         </ul>
     </div>
+
+    <!-- --------------------- Google Calendar Setup Ending --------------------- -->
 
     <!-- --------------------- Bookmark System --------------------- -->
     <div style="display: none;">
@@ -679,102 +683,8 @@
                             fill-rule="evenodd" />
                     </svg>
                 </div>
-                <div class="searchIcon">
-                    <!-- Dropdown Button -->
-                    <div class="dropdown search-dropdown">
-                        <!-- Default Search Engine -->
-                        <button id="default-dropdown-item" style="cursor: pointer;" role="button" class="dropdown-btn">
-                            <div id="default-dropdown" data-default data-engine-name="default" data-engine="0"
-                                class="dropdown-item">
-                                <svg width="30" height="30">
-                                    <use href="#default-engine-icon" />
-                                </svg>
-                                <span class="engine-name" id="defaultEngineDD">
-                                    Default
-                                </span>
-                            </div>
-                        </button>
-                        <div class="dropdown-content">
-                            <!-- Default Google Icon -->
-                            <div id="google-dropdown" data-engine-name="google" data-engine="1" class="dropdown-item">
-                                <svg width="30" height="30">
-                                    <use href="#google-engine-icon" />
-                                </svg>
-                                <span class="engine-name" id="googleEngineDD">
-                                    Google
-                                </span>
-                            </div>
-                            <!-- Duck -->
-                            <div data-engine="2" data-engine-name="duck" id="duck-dropdown" class="dropdown-item">
-                                <svg width="30" height="30">
-                                    <use href="#duck-engine-icon" />
-                                </svg>
-                                <span class="engine-name" id="duckEngineDD">
-                                    Duck
-                                </span>
-                            </div>
-                            <!-- Bing -->
-                            <div data-engine="3" data-engine-name="bing" id="bing-dropdown" class="dropdown-item">
-                                <svg width="30" height="30">
-                                    <use href="#bing-engine-icon" />
-                                </svg>
-                                <span class="engine-name" id="bingEngineDD">
-                                    Bing
-                                </span>
-                            </div>
 
-                            <div data-engine="4" data-engine-name="brave" id="brave-dropdown" class="dropdown-item">
-                                <svg width="30" height="30">
-                                    <use href="#brave-engine-icon" />
-                                </svg>
-                                <span class="engine-name" id="braveEngineDD">
-                                    Brave
-                                </span>
-                            </div>
-
-                            <div data-engine="5" data-engine-name="youtube" id="youtube-dropdown" class="dropdown-item">
-                                <svg width="30" height="30">
-                                    <use href="#youtube-engine-icon" />
-                                </svg>
-                                <span class="engine-name" id="youtubeEngineDD">
-                                    YouTube
-                                </span>
-                            </div>
-
-                            <div data-engine="6" data-engine-name="gImages" id="gImages-dropdown" class="dropdown-item">
-                                <svg width="30" height="30">
-                                    <use href="#gImages-engine-icon" />
-                                </svg>
-                                <span class="engine-name" id="gImagesEngineDD">Images</span>
-                            </div>
-
-                            <div data-engine="7" data-engine-name="reddit" id="reddit-dropdown" class="dropdown-item">
-                                <svg width="30" height="30">
-                                    <use href="#reddit-engine-icon" />
-                                </svg>
-                                <span class="engine-name" id="redditEngineDD">Reddit</span>
-                            </div>
-
-                            <div data-engine="8" data-engine-name="wikipedia" id="wikipedia-dropdown"
-                                class="dropdown-item">
-                                <svg width="30" height="30">
-                                    <use href="#wikipedia-engine-icon" />
-                                </svg>
-                                <span class="engine-name" id="wikipediaEngineDD">Wikipedia</span>
-                            </div>
-
-                            <div data-engine="9" data-engine-name="quora" id="quora-dropdown" class="dropdown-item">
-                                <svg width="30" height="30">
-                                    <use href="#quora-engine-icon" />
-                                </svg>
-                                <span class="engine-name" id="quoraEngineDD">Quora</span>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-
-                <div class="searchbar-content">
+                <div class="searchbar-content" style="padding-left: 0;">
                     <input id="searchQ" placeholder="Type here..." type="text" autocomplete="off">
 
                     <div class="searchControls">
@@ -793,167 +703,18 @@
             <div id="resultBox" class="resultBox bgLightTint" style="display: none;"></div>
             <!-- ----------end of searchbar-------------- -->
 
-            <!-- Search Engine SVG Definitions -->
-            <svg style="display: none;">
-                <symbol id="default-engine-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path style="transform: scale(0.95); transform-origin: center;"
-                        d="M12 22q-2.075 0-3.9-.788t-3.175-2.137T2.788 15.9T2 12t.788-3.9t2.137-3.175T8.1 2.788T12 2t3.9.788t3.175 2.137T21.213 8.1T22 12t-.788 3.9t-2.137 3.175t-3.175 2.138T12 22m0-2q3.35 0 5.675-2.325T20 12q0-.175-.012-.363t-.013-.312q-.125.725-.675 1.2T18 13h-2q-.825 0-1.412-.587T14 11v-1h-4V8q0-.825.588-1.412T12 6h1q0-.575.313-1.012t.762-.713q-.5-.125-1.012-.2T12 4Q8.65 4 6.325 6.325T4 12h5q1.65 0 2.825 1.175T13 16v1h-3v2.75q.5.125.988.188T12 20" />
-                </symbol>
-            </svg>
-
-            <svg style="display: none;">
-                <symbol id="google-engine-icon" viewBox="0 0 28 28" xmlns="http://www.w3.org/2000/svg">
-                    <path
-                        d="M24.805 12.0177c.1309.7383.1961 1.4863.195 2.2357 0 3.3466-1.2204 6.1763-3.3441 8.0916h.0028C19.8016 24.0265 17.2487 25 14.2216 25c-2.9761 0-5.8304-1.1589-7.9349-3.2217C4.1823 19.7154 3 16.9176 3 14.0004c0-2.9173 1.1823-5.7151 3.2867-7.778 2.1045-2.0628 4.9588-3.2217 7.9349-3.2217 2.7857-.032 5.476.9939 7.5073 2.8627l-3.2038 3.1404c-1.1581-1.0822-2.7037-1.6747-4.3035-1.65-2.9274 0-5.4144 1.936-6.301 4.5429a6.4654 6.4654 0 0 0 0 4.2115h.0043c.8907 2.6028 3.3735 4.5387 6.3009 4.5387 1.5121 0 2.811-.3795 3.8182-1.0505h-.0042a5.1412 5.1412 0 0 0 1.4705-1.4462 5.0327 5.0327 0 0 0 .7724-1.8963h-6.0611v-4.2348l10.5834-.0014Z" />
-                </symbol>
-            </svg>
-
-            <svg style="display: none;">
-                <symbol id="duck-engine-icon" viewBox="0 0 28 28" xmlns="http://www.w3.org/2000/svg">
-                    <path
-                        d="M10.5 7a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3ZM12 4a5 5 0 0 1 2.86 9.1c1.58.15 3.36.51 5.14 1.4 3 1.5 4-.5 4-.5s-1 9-7 9h-6s-5 0-5-5c0-3 3-4 2-6-4 0-4-3.5-4-3.5 1 .5 2.24.5 3 .15A5.02 5.02 0 0 1 12 4Z" />
-                </symbol>
-            </svg>
-
-            <svg style="display: none;">
-                <symbol id="bing-engine-icon" viewBox="0 0 28 28" xmlns="http://www.w3.org/2000/svg">
-                    <path
-                        d="M22.9991 13.1645a.4638.4638 0 0 0-.0872-.2527.4546.4546 0 0 0-.2112-.1608l-8.8313-2.7685c-.1648-.0514-.24.0372-.1676.1963l1.6424 3.6516c.0725.16.2598.3496.416.422l2.2533 1.0442c.1562.0724.16.1991.0075.281l-9.6135 5.1749c-.1515.082-.1713.0534-.0433-.0638l3.6933-3.3668a.8237.8237 0 0 0 .2335-.5315l.0037-10.2051a.4647.4647 0 0 0-.0874-.2533.456.456 0 0 0-.2119-.1612L8.2993 5.0133C8.1346 4.962 8 5.0638 8 5.2401v15.481c0 .1763.1148.403.256.504l3.7554 2.6932c.1412.101.3765.1096.5243.019l10.1951-6.2143a.623.623 0 0 0 .1902-.2097A.6332.6332 0 0 0 23 17.24v-4.0755h-.0009Z" />
-                </symbol>
-            </svg>
-
-            <svg style="display: none;">
-                <symbol id="brave-engine-icon" viewBox="0 -0.5 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path
-                        d="m15.013 2 1.716 1.983s1.507-.426 2.218.299a62 62 0 0 1 1.298 1.364l-.46 1.152.585 1.705s-1.723 6.65-1.925 7.463c-.398 1.599-.67 2.217-1.8 3.027a152 152 0 0 1-3.742 2.584c-.287.2-.608.423-.903.423s-.617-.224-.904-.423q-.117-.083-.226-.153a152 152 0 0 1-3.516-2.43c-1.13-.811-1.402-1.43-1.8-3.028-.202-.812-1.925-7.463-1.925-7.463l.586-1.705-.46-1.152s.585-.64 1.297-1.364c.711-.725 2.218-.299 2.218-.299L8.986 2zM7.751 5.241s-2.207 2.719-2.207 3.3c0 .48.19.668.414.89q.07.069.143.146l1.655 1.79.054.057c.165.169.409.418.237.832l-.035.084c-.189.449-.42 1.002-.125 1.563.314.597.853.995 1.199.93.345-.067 1.156-.498 1.454-.696s1.243-.991 1.243-1.295c0-.253-.68-.675-1.01-.88l-.147-.093-.162-.104c-.301-.19-.845-.536-.859-.688-.017-.188-.01-.244.233-.709.051-.099.112-.205.174-.315.232-.405.49-.86.433-1.184-.064-.368-.63-.578-1.107-.757l-.175-.065-.498-.19v-.001a44 44 0 0 1-1.096-.426c-.12-.057-.09-.11.277-.146l.178-.019c.455-.05 1.292-.14 1.7-.024l.264.073c.457.127 1.018.281 1.072.37l.027.042c.052.075.085.123.028.44l-.094.508c-.127.672-.324 1.724-.349 1.96l-.011.095c-.032.263-.053.438.247.508l.078.018c.338.08.834.195 1.014.195.179 0 .675-.116 1.013-.195l.078-.018c.3-.07.279-.245.247-.508l-.01-.095c-.026-.236-.223-1.285-.35-1.957l-.094-.51c-.057-.318-.024-.366.028-.44l.027-.043c.054-.089.615-.243 1.072-.37l.265-.073c.407-.116 1.245-.025 1.699.024l.178.019c.367.035.398.09.277.146-.087.041-.618.244-1.096.426l-.498.19-.174.066c-.479.179-1.043.39-1.108.757-.058.325.202.779.433 1.185.062.109.123.215.175.314.242.465.249.52.232.709-.014.153-.558.497-.86.688-.07.044-.127.08-.16.104l-.148.093c-.33.205-1.01.627-1.01.88 0 .304.945 1.098 1.243 1.295.298.198 1.11.63 1.455.695.345.066.884-.332 1.198-.929.296-.56.064-1.114-.124-1.563l-.036-.084c-.171-.414.072-.663.237-.832l.054-.056 1.655-1.791q.074-.078.144-.146c.223-.222.413-.41.413-.89 0-.581-2.207-3.3-2.207-3.3s-1.863.363-2.114.363c-.2 0-.587-.136-.99-.277l-.307-.107c-.503-.17-.837-.172-.837-.172h.009-.018H12c-.006 0-.34.003-.838.172q-.152.052-.306.107c-.404.141-.79.277-.99.277-.252 0-2.115-.363-2.115-.363m5.688 9.78c-.59-.31-1.325-.575-1.44-.575s-.85.265-1.439.576l-.374.196c-.395.207-.674.354-.78.422-.137.087-.053.251.071.34.125.09 1.797 1.41 1.96 1.556l.065.06c.156.143.356.326.498.326.141 0 .34-.183.497-.326l.066-.06a99 99 0 0 1 1.959-1.555c.124-.09.208-.254.071-.341-.105-.068-.385-.214-.778-.421z" />
-                </symbol>
-            </svg>
-
-            <svg style="display: none;">
-                <symbol id="youtube-engine-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path style="transform: scale(0.77); transform-origin: center;"
-                        d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
-                </symbol>
-            </svg>
-
-            <svg style="display: none;">
-                <symbol id="gImages-engine-icon" viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg">
-                    <path style="transform: scale(0.92); transform-origin: center;"
-                        d="M24.844 0A.998.998 0 0 0 24 1v10H12.906c-.25.02-.484.129-.656.313v.03a.472.472 0 0 0-.063.063L.25 24.312A1.001 1.001 0 0 0 1 26h10v11a.994.994 0 0 0 .313.75l13 12A1.001 1.001 0 0 0 26 49V39h11a.994.994 0 0 0 .75-.313l12-13A1.001 1.001 0 0 0 49 24H39V13a.994.994 0 0 0-.313-.75l-13-12a.996.996 0 0 0-.843-.25ZM26 3.313 36.5 13l-9.25 9.25A5.037 5.037 0 0 1 26 18.937v-7.031ZM13 13.5l9.25 9.25A5.037 5.037 0 0 1 18.937 24H3.313Zm12 9.063A7.135 7.135 0 0 0 27.438 25 7.135 7.135 0 0 0 25 27.438 7.135 7.135 0 0 0 22.562 25 7.135 7.135 0 0 0 25 22.562ZM31.063 26h15.625L37 36.5l-9.25-9.25A5.037 5.037 0 0 1 31.063 26Zm-8.313 1.75c.77.887 1.25 2.04 1.25 3.313v15.624L13.5 37Z" />
-                </symbol>
-            </svg>
-
-            <svg style="display: none;">
-                <symbol id="reddit-engine-icon" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
-                    <path style="transform: scale(1.24); transform-origin: center;"
-                        d="M213.15 129.22c0-10.376-8.391-18.617-18.617-18.617a18.74 18.74 0 0 0-12.97 5.189c-12.818-9.157-30.368-15.107-49.9-15.87l8.544-39.981 27.773 5.95c.307 7.02 6.104 12.667 13.278 12.667 7.324 0 13.275-5.95 13.275-13.278 0-7.324-5.95-13.275-13.275-13.275-5.188 0-9.768 3.052-11.904 7.478l-30.976-6.562c-.916-.154-1.832 0-2.443.458-.763.458-1.22 1.22-1.371 2.136l-9.464 44.558c-19.837.612-37.692 6.562-50.662 15.872a18.74 18.74 0 0 0-12.971-5.188c-10.377 0-18.617 8.391-18.617 18.617 0 7.629 4.577 14.037 10.988 16.939a33.6 33.6 0 0 0-.458 5.646c0 28.686 33.42 52.036 74.621 52.036 41.202 0 74.622-23.196 74.622-52.036a35 35 0 0 0-.458-5.646c6.408-2.902 10.985-9.464 10.985-17.093M85.272 142.495c0-7.324 5.95-13.275 13.278-13.275 7.324 0 13.275 5.95 13.275 13.275s-5.95 13.278-13.275 13.278c-7.327.15-13.278-5.953-13.278-13.278m74.317 35.251c-9.156 9.157-26.553 9.768-31.588 9.768-5.188 0-22.584-.765-31.59-9.768-1.371-1.373-1.371-3.51 0-4.883 1.374-1.371 3.51-1.371 4.884 0 5.8 5.8 18.008 7.782 26.706 7.782s21.058-1.983 26.704-7.782c1.374-1.371 3.51-1.371 4.884 0 1.22 1.373 1.22 3.51 0 4.883m-2.443-21.822c-7.325 0-13.275-5.95-13.275-13.275s5.95-13.275 13.275-13.275c7.327 0 13.277 5.95 13.277 13.275 0 7.17-5.95 13.275-13.277 13.275" />
-                </symbol>
-            </svg>
-
-            <svg style="display: none;">
-                <symbol id="wikipedia-engine-icon" viewBox="0 -0.5 32 32" xmlns="http://www.w3.org/2000/svg">
-                    <path style="transform: scale(0.95); transform-origin: center;"
-                        d="M30 9.215a.31.31 0 0 1-.313.308h-1.68l-7.616 16.215a.31.31 0 0 1-.278.18h-.004a.31.31 0 0 1-.28-.172l-3.614-7.168-3.902 7.18a.313.313 0 0 1-.555-.016L4.055 9.523H2.313A.31.31 0 0 1 2 9.215V8.39a.31.31 0 0 1 .313-.309h6.21a.31.31 0 0 1 .313.309v.824a.31.31 0 0 1-.313.308H7.188l5.316 12.262 2.766-5.168-3.508-7.09h-.844a.313.313 0 0 1-.313-.312v-.82c0-.172.141-.313.313-.313h4.598a.31.31 0 0 1 .308.313v.82a.307.307 0 0 1-.308.308h-.813l2.02 4.415 2.402-4.415h-1.473a.31.31 0 0 1-.312-.308v-.82a.31.31 0 0 1 .312-.313h4.465a.31.31 0 0 1 .309.313v.82a.307.307 0 0 1-.309.308h-.98l-3.504 6.372 2.855 5.875L26 9.523h-1.746a.31.31 0 0 1-.313-.308v-.82c0-.172.141-.313.313-.313h5.433a.31.31 0 0 1 .313.313z" />
-                </symbol>
-            </svg>
-
-            <svg style="display: none;">
-                <symbol id="quora-engine-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path style="transform: scale(0.67); transform-origin: center;"
-                        d="M7.38.948A11.963 11.963 0 0 1 21.248 19.54l2.41 2.422c.732.736.21 1.99-.828 1.99l-10.71.01a12.52 12.52 0 0 1-.304 0h-.02A11.963 11.963 0 0 1 7.382.95Zm7.322 4.428a7.172 7.172 0 1 0-5.488 13.252 7.172 7.172 0 0 0 5.489-13.252Z" />
-                </symbol>
-            </svg>
-
-            <!-- ----------search with------------------- -->
-            <div class="searchWithCont" style="visibility: hidden;" id="search-with-container">
-
-                <div class="hint bgLightTint" id="searchWithHint"></div>
-
-                <div class="searchEnginesContainer">
-
-                    <div class="search-engine bgLightTint" data-category="search-with">
-                        <svg width="30" height="30" class="search-engine-icon">
-                            <use href="#default-engine-icon" />
-                        </svg>
-                        <label class="engine-name" id="defaultEngine">Default</label>
-                        <input checked class="radio-button" name="search-engine" type="radio" value="engine0">
-                    </div>
-
-                    <div class="search-engine bgLightTint" data-category="search-with">
-                        <svg width="30" height="30" class="search-engine-icon">
-                            <use href="#google-engine-icon" />
-                        </svg>
-                        <label class="engine-name" id="googleEngine">Google</label>
-                        <input class="radio-button" name="search-engine" type="radio" value="engine1">
-                    </div>
-
-                    <div class="search-engine bgLightTint" data-category="search-with">
-                        <svg width="30" height="30" class="search-engine-icon">
-                            <use href="#duck-engine-icon" />
-                        </svg>
-                        <label class="engine-name" id="duckEngine">Duck</label>
-                        <input class="radio-button" name="search-engine" type="radio" value="engine2">
-                    </div>
-
-                    <div class="search-engine bgLightTint" data-category="search-with">
-                        <svg width="30" height="30" class="search-engine-icon">
-                            <use href="#bing-engine-icon" />
-                        </svg>
-                        <label class="engine-name" id="bingEngine" data-category="search-with">Bing</label>
-                        <input class="radio-button" name="search-engine" type="radio" value="engine3">
-                    </div>
-
-                    <div class="search-engine bgLightTint" data-category="search-with">
-                        <svg width="30" height="30" class="search-engine-icon">
-                            <use href="#brave-engine-icon" />
-                        </svg>
-                        <label class="engine-name" id="braveEngine">Brave</label>
-                        <input class="radio-button" name="search-engine" type="radio" value="engine4">
-                    </div>
-
-                    <div class="search-engine bgLightTint" data-category="search-on">
-                        <svg width="30" height="30" class="search-engine-icon">
-                            <use href="#youtube-engine-icon" />
-                        </svg>
-                        <label class="engine-name" id="youtubeEngine">YouTube</label>
-                        <input class="radio-button" name="search-engine" type="radio" value="engine5">
-                    </div>
-
-                    <div class="search-engine bgLightTint" data-category="search-on">
-                        <svg width="30" height="30" class="search-engine-icon">
-                            <use href="#gImages-engine-icon" />
-                        </svg>
-                        <label class="engine-name" id="gImagesEngine">Images</label>
-                        <input class="radio-button" name="search-engine" type="radio" value="engine6">
-                    </div>
-
-                    <div class="search-engine bgLightTint" data-category="search-on">
-                        <svg width="30" height="30" class="search-engine-icon">
-                            <use href="#reddit-engine-icon" />
-                        </svg>
-                        <label class="engine-name" id="redditEngine">Reddit</label>
-                        <input class="radio-button" name="search-engine" type="radio" value="engine7">
-                    </div>
-
-                    <div class="search-engine bgLightTint" data-category="search-on">
-                        <svg width="30" height="30" class="search-engine-icon">
-                            <use href="#wikipedia-engine-icon" />
-                        </svg>
-                        <label class="engine-name" id="wikipediaEngine">Wikipedia</label>
-                        <input class="radio-button" name="search-engine" type="radio" value="engine8">
-                    </div>
-
-                    <div class="search-engine bgLightTint" data-category="search-on">
-                        <svg width="30" height="30" class="search-engine-icon">
-                            <use href="#quora-engine-icon" />
-                        </svg>
-                        <label class="engine-name" id="quoraEngine">Quora</label>
-                        <input class="radio-button" name="search-engine" type="radio" value="engine9">
-                    </div>
-
+            <!-- Calendar Widget -->
+            <div id="calendarContainer" class="calendar-container bgLightTint">
+                <div class="calendar-list-wrapper">
+                    <ul class="calendar-list" id="calendarEventsList">
+                        <li class="loading-events">Click 'Sign In' to view events...
+                            <button id="authCalendarBtn" style="margin-top: 10px; cursor: pointer;">Sign In</button>
+                        </li>
+                    </ul>
                 </div>
             </div>
-            <!-- ----------end of search with------------- -->
+
+
             <div class="quotesCont" id="motivationalQuotesCont">
                 <div class="quotesContainer">
                 </div>
@@ -1366,6 +1127,17 @@
                                         </label>
                                     </div>
 
+                                    <div class="ttcont">
+                                        <div class="texts">
+                                            <div class="bigText" id="googleCalendarText">Google Calendar</div>
+                                            <div class="infoText" id="googleCalendarInfo">Show upcoming calendar events</div>
+                                        </div>
+                                        <label class="switch">
+                                            <input id="googleCalendarCheckbox" type="checkbox">
+                                            <span class="toggle"></span>
+                                        </label>
+                                    </div>
+
                                 </div>
                             </div>
                         </div>
@@ -1391,7 +1163,7 @@
                                             <span class="toggle"></span>
                                         </label>
                                     </div>
-                                    
+
                                     <div class="clockOptions">
                                         <div class="ttcont">
                                             <div class="texts">
@@ -1505,7 +1277,8 @@
                                         <div class="ttcont" id="proxybypassField">
                                             <div class="texts">
                                                 <div class="bigText" id="useproxytitletext">Proxy Bypass</div>
-                                                <div class="infoText" id="useproxyText">If search suggestions aren't working
+                                                <div class="infoText" id="useproxyText">If search suggestions aren't
+                                                    working
                                                 </div>
                                             </div>
                                             <label class="switch">
@@ -1517,7 +1290,8 @@
                                         <div class="ttcont unflex" id="proxyField">
                                             <div class="texts">
                                                 <div class="bigText" id="ProxyText">CORS Bypass Proxy</div>
-                                                <div class="infoText" id="ProxySubtext">Add your own CORS bypass proxy</div>
+                                                <div class="infoText" id="ProxySubtext">Add your own CORS bypass proxy
+                                                </div>
                                             </div>
                                             <input id="userproxy" placeholder="https://mynt-proxy.rhythmcorehq.com"
                                                 type="text">
@@ -1583,7 +1357,8 @@
                                             <div class="texts">
                                                 <div class="bigText" id="fahrenheitCelsiusCheckbox">Switch to Fahrenheit
                                                 </div>
-                                                <div class="infoText" id="fahrenheitCelsiusText">Refresh the page to apply
+                                                <div class="infoText" id="fahrenheitCelsiusText">Refresh the page to
+                                                    apply
                                                     changes</div>
                                             </div>
                                             <label class="switch">
@@ -1599,7 +1374,8 @@
                                                     correct</div>
                                             </div>
 
-                                            <input id="userLoc" placeholder="Your City or Coordinates (Latitude, Longitude)"
+                                            <input id="userLoc"
+                                                placeholder="Your City or Coordinates (Latitude, Longitude)"
                                                 type="text">
 
                                             <div id="locationSuggestions" class="location-suggestion-box"></div>
@@ -1614,7 +1390,8 @@
                                         <div class="ttcont">
                                             <div class="texts">
                                                 <div class="bigText" id="useGPS">Use GPS</div>
-                                                <div class="infoText" id="useGPSInfo">Enable GPS for live location updates
+                                                <div class="infoText" id="useGPSInfo">Enable GPS for live location
+                                                    updates
                                                 </div>
                                             </div>
                                             <label class="switch">
@@ -1626,7 +1403,8 @@
                                         <div class="ttcont unflex">
                                             <div class="texts">
                                                 <div class="bigText" id="WeatherApiText">Enter your WeatherAPI key</div>
-                                                <div class="infoText" id="WeatherApiSubtext">If the weather functionality
+                                                <div class="infoText" id="WeatherApiSubtext">If the weather
+                                                    functionality
                                                     isn't working</div>
                                             </div>
                                             <input id="userAPI" placeholder="Your weatherAPI key" type="text">

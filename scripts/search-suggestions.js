@@ -113,12 +113,7 @@ searchInput.addEventListener("input", async function () {
                         resultBox.appendChild(resultItem);
                     });
 
-                    // Check if the dropdown of search shortcut is open
-                    const dropdown = document.querySelector(".dropdown-content");
 
-                    if (dropdown.style.display === "block") {
-                        dropdown.style.display = "none";
-                    }
                     showResultBox();
                 }
             } catch (error) {
@@ -210,62 +205,18 @@ let lastRedditRequestTime = 0;
 
 async function getAutocompleteSuggestions(query) {
     const clientParam = getClientParam(); // Get the browser client parameter dynamically
-    var selectedOption = document.querySelector('input[name="search-engine"]:checked').value;
 
-    // 🔒 Throttle Reddit API calls
-    const now = Date.now();
-    if (selectedOption === "engine7") {
-        if (now - lastRedditRequestTime < 1000) {
-            return []; // skip call if within 1 second
-        }
-        lastRedditRequestTime = now;
-    }
-
-    const searchSuggestionsAPI = {
-        engine0: `https://duckduckgo.com/ac/?q=${encodeURIComponent(query)}&type=list`,
-        engine1: `https://www.google.com/complete/search?client=${clientParam}&q=${encodeURIComponent(query)}`,
-        engine2: `https://duckduckgo.com/ac/?q=${encodeURIComponent(query)}&type=list`,
-        engine4: `https://search.brave.com/api/suggest?q=${encodeURIComponent(query)}&rich=true&source=web`,
-        engine5: `https://www.google.com/complete/search?client=${clientParam}&ds=yt&q=${encodeURIComponent(query)}`,
-        engine7: `https://www.reddit.com/search.json?q=${encodeURIComponent(query)}&sort=relevance&limit=15`,
-        engine8: `https://${languageCode}.wikipedia.org/w/api.php?action=opensearch&search=${encodeURIComponent(query)}&format=json`
-    };
-
+    let apiUrl = `https://www.google.com/complete/search?client=${clientParam}&q=${encodeURIComponent(query)}`;
     const useproxyCheckbox = document.getElementById("useproxyCheckbox");
-    let apiUrl = searchSuggestionsAPI[selectedOption] || searchSuggestionsAPI["engine1"];
-    if (useproxyCheckbox.checked && selectedOption !== "engine7") {
+
+    if (useproxyCheckbox.checked) {
         apiUrl = proxyurl + encodeURIComponent(apiUrl);
     }
 
     try {
         const response = await fetch(apiUrl);
         const data = await response.json();
-
-        if (selectedOption === "engine4") {
-            const suggestions = data[1].map(item => {
-                if (item.is_entity) {
-                    return `${item.q} - ${item.name} (${item.category ? item.category : "No category"})`;
-                } else {
-                    return item.q;
-                }
-            });
-            return suggestions;
-
-        } else if (selectedOption === "engine7") {
-            const suggestions = [];
-            if (data && data.data && data.data.children) {
-                data.data.children.forEach(post => {
-                    if (post.data && post.data.title) {
-                        const subreddit = post.data.subreddit_name_prefixed;
-                        suggestions.push(`${post.data.title} (${subreddit})`);
-                    }
-                });
-            }
-            return suggestions;
-
-        } else {
-            return data[1];
-        }
+        return data[1];
     } catch (error) {
         console.error("Error fetching autocomplete suggestions:", error);
         return [];

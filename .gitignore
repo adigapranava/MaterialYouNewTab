@@ -1,3 +1,6 @@
+# Ignore API keys file
+scripts/api-keys.js
+
 # Ignore macOS system files
 .DS_Store
 
