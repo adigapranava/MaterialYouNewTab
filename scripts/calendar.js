@@ -22,9 +22,8 @@ async function getAuthToken(interactive = false) {
 
 // Function to fetch today's and upcoming events
 async function fetchCalendarEvents(token) {
-    const timeMin = new Date();
-    timeMin.setHours(0, 0, 0, 0);
-
+    const timeMin = new Date(); // Use the current moment to exclude past events
+    
     const timeMax = new Date();
     timeMax.setDate(timeMax.getDate() + 7); // Fetch events for the next 7 days
 
