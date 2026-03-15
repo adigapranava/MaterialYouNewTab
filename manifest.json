@@ -19,10 +19,13 @@
 		"https://*.wikipedia.org/w/api.php?action=opensearch&search=*"
 	],
 	"host_permissions": [
-		"https://www.googleapis.com/*"
+		"https://www.googleapis.com/*",
+		"https://api.openai.com/*",
+		"https://*.weatherapi.com/*",
+		"http://localhost:11434/*"
 	],
 	"oauth2": {
-		"client_id": "YOUR_GOOGLE_CLIENT_ID_HERE.apps.googleusercontent.com",
+		"client_id": "321302407699-4j7uoap10539fb9spfut2d6suq1mlbkp.apps.googleusercontent.com",
 		"scopes": [
 			"https://www.googleapis.com/auth/calendar.readonly",
 			"https://www.googleapis.com/auth/calendar.events.readonly"
