@@ -15,6 +15,7 @@
     <meta name="google-site-verification" content="j8K161R-W9yVVDoylaoPd2twGbjToAC3EzAFfZU1YOY" />
     <title>New Tab</title>
     <link href="style.css" rel="stylesheet">
+    <link href="notes.css" rel="stylesheet">
     <link href="./favicon/icon48.png" id="favicon" rel="icon" type="image/png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
 
@@ -45,8 +46,13 @@
     <script defer src="scripts/backup-restore.js"></script>
     <script defer src="scripts/calendar.js"></script>
     <script defer src="scripts/syntax-highlighter.js"></script>
+    <script defer src="libs/prism-python.min.js"></script>
     <script defer src="scripts/ai-handler.js"></script>
     <script defer src="scripts/ai-ui.js"></script>
+    <script defer src="libs/marked.min.js"></script>
+    <script defer src="libs/purify.min.js"></script>
+    <script defer src="libs/mermaid.min.js"></script>
+    <script defer src="scripts/notes.js"></script>
 
     <!-- LANGUAGES SCRIPTS -->
     <script src="locales/pt.js"></script>
@@ -131,6 +137,55 @@
         <!-- Text to appear on hover -->
         <span class="tooltip-text" id="bookmarksHover">Bookmarks</span>
     </div>
+    <!-- --------------------- Notes System --------------------- -->
+    <div class="notes-button" id="notesButton">
+        <svg xmlns="http://www.w3.org/2000/svg" class="dot-icon" width="36" height="36" viewBox="0 0 24 24">
+            <path fill="currentColor" d="M3 3v18h18V3H3zm16 16H5V5h14v14zM7 7h10v2H7V7zm0 4h10v2H7v-2zm0 4h7v2H7v-2z"/>
+        </svg>
+        <span class="tooltip-text" id="notesHover">Notes</span>
+    </div>
+
+    <div id="notesContainer" class="notes-glass-panel" style="display: none;">
+        <div id="notesSidebar" class="notes-sidebar">
+            <div class="notes-sidebar-header">
+                <h2 id="notesHeading">Notes</h2>
+                <div class="notes-controls">
+                    <select id="notesThemeSelect" class="notes-theme-select">
+                        <option value="default">Default</option>
+                        <option value="professional">Professional</option>
+                        <option value="comic">Comic</option>
+                        <option value="funky">Funky</option>
+                        <option value="nothing">Nothing</option>
+                    </select>
+                    <button id="addNoteBtn" class="add-note-btn">+</button>
+                    <button id="closeNotesBtn" class="close-notes-btn">✖</button>
+                </div>
+            </div>
+            
+            <div class="notes-main-layout">
+                <div class="notes-list-pane">
+                    <ul id="notesList"></ul>
+                </div>
+                
+                <div class="notes-editor-pane">
+                    <div class="notes-editor-toolbar">
+                        <input type="text" id="currentNoteTitle" placeholder="Note Title..." autocomplete="off">
+                        <button id="deleteNoteBtn" class="delete-note-btn" title="Delete Note">
+                            <svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentColor" d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"/></svg>
+                        </button>
+                        <button id="togglePreviewBtn" class="toggle-preview-btn">View</button>
+                    </div>
+                    
+                    <div class="notes-body-container">
+                        <textarea id="noteEditor" placeholder="Type markdown here... (Ctrl+V to paste images)"></textarea>
+                        <div id="notePreview" class="markdown-body" style="display: none;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!----------------------- End of Notes System ----------------------->
+
     <div id="bookmarksContainer">
         <div id="bookmarkSidebar" class="bookmark-sidebar">
 

@@ -6,3 +6,6 @@ scripts/api-keys.js
 
 # Ignore VSCode workspace settings
 .vscode/
+
+# Ignore real manifest.json, use manifest.example.json
+manifest.json
